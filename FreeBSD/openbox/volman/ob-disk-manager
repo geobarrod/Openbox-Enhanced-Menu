@@ -1,0 +1,63 @@
+#!/bin/sh
+# Openbox Disk Manager
+# Author:	Geovani B.R. (geobarrod) <igeo.cu@gmail.com>
+# License:	BSD
+# Version:	1478754488
+# Update:	1482547102
+
+ICON_THEME="$HOME/.config/openbox/icons/64x64/apps/"
+VMSG="/tmp/volman-msg.tmp"
+
+remove_vmsg () {
+	rm -f $VMSG
+}
+
+if [ "$(vmount)" == "" ]; then
+	if [ -x $(which Xdialog) ]; then
+		Xdialog --title "[Mount|Unmount] USB Flash Disk" --timeout 5 --msgbox "WARNING: No found flash disk device." 5 40
+		exit 1
+	elif [ -x $(which zenity) ]; then
+		zenity --title="[Mount|Unmount] USB Flash Disk" --timeout=5 --warning --text="WARNING: No found flash disk device." 2> /dev/null
+		exit 1
+	elif [ -x $(which kdialog) ]; then
+		kdialog --icon=$ICON_THEME/dialog-warning.png --title="[Mount|Unmount] USB Flash Disk" --passivepopup="WARNING: No found flash disk device." 5 2> /dev/null
+		exit 1
+	fi
+fi
+for dev in $(vmount|awk -F " " '{print $2}'|xargs); do
+	vmount $dev > $VMSG
+	if [ "$(grep -o ERROR $VMSG)" == "ERROR" ]; then
+		if [ -x $(which Xdialog) ]; then
+			Xdialog --title "[Mount|Unmount] USB Flash Disk" --timeout 5 --msgbox "ERROR Umounting: Close any application using flash disk device or /media directory." 5 75
+			exit 1
+		elif [ -x $(which zenity) ]; then
+			zenity --title="[Mount|Unmount] USB Flash Disk" --timeout=5 --error --text="ERROR Umounting: Close any application using flash disk device or /media directory." 2> /dev/null
+			exit 1
+		elif [ -x $(which kdialog) ]; then
+			kdialog --icon=$ICON_THEME/dialog-error.png --title="[Mount|Unmount] USB Flash Disk" --passivepopup="ERROR Umounting: Close any application using flash disk device or /media directory." 5 2> /dev/null
+			exit 1
+		fi
+	remove_vmsg
+	exit 1
+  fi
+done
+if [ "$(vmount|awk -F " " '{print $1}'|uniq)" == "[m]" ]; then
+	if [ -x $(which Xdialog) ]; then
+		Xdialog --title "[Mount|Unmount] USB Flash Disk" --timeout 5 --msgbox "SUCCESS: All USB flash disk device are mounted on /media directory." 5 60
+	elif [ -x $(which zenity) ]; then
+		zenity --title="[Mount|Unmount] USB Flash Disk" --timeout=5 --info --text="SUCCESS: All USB flash disk device are mounted on /media directory." 2> /dev/null
+	elif [ -x $(which kdialog) ]; then
+		kdialog --icon=$ICON_THEME/dialog-information.png --title="[Mount|Unmount] USB Flash Disk" --passivepopup="SUCCESS: All USB flash disk device are mounted on /media directory." 5 2> /dev/null
+	fi
+	exo-open /media
+elif [ "$(vmount|awk -F " " '{print $1}'|uniq)" == "[u]" ]; then
+	if [ -x $(which Xdialog) ]; then
+		Xdialog --title "[Mount|Unmount] USB Flash Disk" --timeout 5 --msgbox "SUCCESS: Now is safe disconnect all USB flash disk device." 5 55
+	elif [ -x $(which zenity) ]; then
+		zenity --title="[Mount|Unmount] USB Flash Disk" --timeout=5 --info --text="SUCCESS: Now is safe disconnect all USB flash disk device." 2> /dev/null
+	elif [ -x $(which kdialog) ]; then
+		kdialog --icon=$ICON_THEME/dialog-information.png --title="[Mount|Unmount] USB Flash Disk" --passivepopup="SUCCESS: Now is safe disconnect all USB flash disk device." 5 2> /dev/null
+	fi
+fi
+remove_vmsg
+exit 0

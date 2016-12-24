@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+	<menu id="apps-accessories-menu" label="Accessories">
+		<item label="compton"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/compton.png">
+			<action name="Execute">
+				<command>compton</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="File Manager"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/system-file-manager.png">
+			<action name="Execute">
+				<command>exo-open --launch FileManager</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Terminal Emulator"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/utilities-terminal.png">
+			<action name="Execute">
+				<command>exo-open --launch TerminalEmulator</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Ark"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/ark.png">
+			<action name="Execute">
+				<command>ark</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KCalc"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/accessories-calculator.png">
+			<action name="Execute">
+				<command>kcalc</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KFontView"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/kfontview.png">
+			<action name="Execute">
+				<command>kfontview</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Klipper"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/klipper.png">
+			<action name="Execute">
+				<command>klipper</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KRename"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/krename.png.png">
+			<action name="Execute">
+				<command>krename</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Nepomuk Backup"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/nepomuk.png">
+			<action name="Execute">
+				<command>nepomukbackup</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Nepomuk Cleaner"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/nepomuk.png">
+			<action name="Execute">
+				<command>nepomukcleaner</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Midnight Commander"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/mc.png">
+			<action name="Execute">
+				<command>mc</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Xfburn"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/media-optical.png">
+			<action name="Execute">
+				<command>xfburn</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="About Xfce"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/help-about.png">
+			<action name="Execute">
+				<command>xfce4-about</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-editors-menu" label="Editors">
+		<item label="Kate"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/kate.png">
+			<action name="Execute">
+				<command>kate -b</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KWrite"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/accessories-text-editor.png">
+			<action name="Execute">
+				<command>kwrite</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-fileman-menu" label="File Managers">
+		<item label="File Manager"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/system-file-manager.png">
+			<action name="Execute">
+				<command>exo-open --launch FileManager</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Dolphin"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/system-file-manager.png">
+			<action name="Execute">
+				<command>dolphin</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Midnight Commander"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/mc.png">
+			<action name="Execute">
+				<command>mc</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-graphics-menu" label="Graphics">
+		<item label="GNU Image Manipulation Program"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/gimp.png">
+			<action name="Execute">
+				<command>gimp-2.8</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Inkscape"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/inkscape.png">
+			<action name="Execute">
+				<command>inkscape</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Gwenview"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/gwenview.png">
+			<action name="Execute">
+				<command>gwenview</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KSnapshot"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/ksnapshot.png">
+			<action name="Execute">
+				<command>ksnapshot</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Okular"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/okular.png">
+			<action name="Execute">
+				<command>okular</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="LibreOffice Draw"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/libreoffice-draw.png">
+			<action name="Execute">
+				<command>libreoffice --draw</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Nitrogen"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/nitrogen.png">
+			<action name="Execute">
+				<command>nitrogen</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="PC-BSD PDF Viewer"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/application-pdf.png">
+			<action name="Execute">
+				<command>pc-pdfviewer</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Qt 4 PixelTool"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pixmaps/qtlogo.png.png">
+			<action name="Execute">
+				<command>/usr/local/bin/pixeltool</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-multimedia-menu" label="Multimedia">
+		<item label="HandBrake"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/.png">
+			<action name="Execute">
+				<command>HandBrake</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="gMTP"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/gmtpicon.png">
+			<action name="Execute">
+				<command>gmtp</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="ISO Master"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/isomaster/icons/isomaster.png.png">
+			<action name="Execute">
+				<command>isomaster</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Amarok"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/amarok.png">
+			<action name="Execute">
+				<command>amarok</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="AMZ Downloader"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/download.png">
+			<action name="Execute">
+				<command>amzdownloader --amz</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KMix"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/kmix.png">
+			<action name="Execute">
+				<command>kmix</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="mkvinfo"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/mkvinfo.png">
+			<action name="Execute">
+				<command>mkvinfo -g</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="MKVToolNix GUI"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/mkvtoolnix-gui.png">
+			<action name="Execute">
+				<command>mkvtoolnix-gui</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="SMPlayer"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/smplayer.png">
+			<action name="Execute">
+				<command>smplayer</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Enqueue in SMPlayer"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/smplayer.png">
+			<action name="Execute">
+				<command>smplayer -add-to-playlist</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="VLC media player"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/vlc.png">
+			<action name="Execute">
+				<command>/usr/local/bin/vlc --started-from-file</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Xfburn"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/media-optical.png">
+			<action name="Execute">
+				<command>xfburn</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-net-menu" label="Internet">
+		<item label="Mail Reader"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/mail-send.png">
+			<action name="Execute">
+				<command>exo-open --launch MailReader</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Web Browser"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/web-browser.png">
+			<action name="Execute">
+				<command>exo-open --launch WebBrowser</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Firefox Web Browser"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/firefox.png.png">
+			<action name="Execute">
+				<command>firefox</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Bookmark Editor"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/.png">
+			<action name="Execute">
+				<command>keditbookmarks</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KNetAttach"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/knetattach.png">
+			<action name="Execute">
+				<command>knetattach</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Konqueror"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/konqueror.png">
+			<action name="Execute">
+				<command>kfmclient openProfile webbrowsing</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Thunderbird"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/thunderbird.png.png">
+			<action name="Execute">
+				<command>thunderbird</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-office-menu" label="Office">
+		<item label="Okular"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/okular.png">
+			<action name="Execute">
+				<command>okular</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="LibreOffice Base"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/libreoffice-base.png">
+			<action name="Execute">
+				<command>libreoffice --base</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="LibreOffice Calc"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/libreoffice-calc.png">
+			<action name="Execute">
+				<command>libreoffice --calc</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="LibreOffice Draw"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/libreoffice-draw.png">
+			<action name="Execute">
+				<command>libreoffice --draw</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="LibreOffice Impress"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/libreoffice-impress.png">
+			<action name="Execute">
+				<command>libreoffice --impress</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="LibreOffice Math"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/libreoffice-math.png">
+			<action name="Execute">
+				<command>libreoffice --math</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="LibreOffice"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/libreoffice-startcenter.png">
+			<action name="Execute">
+				<command>libreoffice</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="LibreOffice Writer"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/libreoffice-writer.png">
+			<action name="Execute">
+				<command>libreoffice --writer</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-term-menu" label="Terminals">
+		<item label="Terminal Emulator"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/utilities-terminal.png">
+			<action name="Execute">
+				<command>exo-open --launch TerminalEmulator</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Konsole"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/utilities-terminal.png">
+			<action name="Execute">
+				<command>konsole</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Yakuake"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/yakuake.png">
+			<action name="Execute">
+				<command>yakuake</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="XTerm"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/xterm-color_48x48.png">
+			<action name="Execute">
+				<command>xterm</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="system-menu" label="System">
+		<item label="About"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pcbsd/icons/about.png.png">
+			<action name="Execute">
+				<command>about-gui</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Florence Virtual Keyboard"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pixmaps/florence.svg.png">
+			<action name="Execute">
+				<command>florence</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Firewall Manager"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/preferences-system-network-sharing.png">
+			<action name="Execute">
+				<command>pc-su pc-fwmanager</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="PC-BSD Handbook"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pcbsd/icons/pcbsd-handbook.png.png">
+			<action name="Execute">
+				<command>pc-webkitviewer -t /usr/local/share/pcbsd/doc/html/pcbsd.html</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KDE System Settings"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/preferences-system.png">
+			<action name="Execute">
+				<command>systemsettings</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KInfoCenter"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/hwinfo.png">
+			<action name="Execute">
+				<command>kinfocenter</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KRandRTray"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/preferences-desktop-display-randr.png">
+			<action name="Execute">
+				<command>krandrtray</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="KSysGuard"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/utilities-system-monitor.png">
+			<action name="Execute">
+				<command>ksysguard</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="System Settings"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/preferences-system.png">
+			<action name="Execute">
+				<command>systemsettings</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="OctoPkg"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pixmaps/octopi_green.png.png">
+			<action name="Execute">
+				<command>octopkg</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Login Manager Settings"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pcbsd/icons/pc-dmconf.png.png">
+			<action name="Execute">
+				<command>pc-su pc-dmconf</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Update Manager"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pcbsd/icons/sysupdate.png.png">
+			<action name="Execute">
+				<command>sudo pc-updategui</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="PC-BSD Welcome"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/computer.png">
+			<action name="Execute">
+				<command>pc-welcome</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Update Manager Tray"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pcbsd/icons/system-software-update.png.png">
+			<action name="Execute">
+				<command>pc-systemupdatertray</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="PC-BSD bug report tool"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pcbsd/pc-controlpanel/icons/pc-bugreport.png.png">
+			<action name="Execute">
+				<command>pc-bugreport</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="PC-BSD Control Panel"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pcbsd/pc-controlpanel/icons/pc-controlpanel.png.png">
+			<action name="Execute">
+				<command>pc-controlpanel</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="PC-BSD keyboard settings"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/input-keyboard.png">
+			<action name="Execute">
+				<command>pc-syskeyboard</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="AppCafe"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//usr/local/share/pcbsd/icons/appcafe.png.png">
+			<action name="Execute">
+				<command>appcafe</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Tint2"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/tint2.png">
+			<action name="Execute">
+				<command>tint2</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Oracle VM VirtualBox"
+		icon="/home/geo/.config/openbox/icons/64x64/apps/VBox.png">
+			<action name="Execute">
+				<command>VirtualBox</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="root-menu" label="Openbox">
+		<separator label="Openbox 3.6 ⚫ FreeBSD"/>
+		<item label="Run"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//run.png">
+			<action name="Execute">
+				<command>gmrun</command>
+			</action>
+		</item>
+		<item label="Terminal Emulator"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//terminal.png">
+			<action name="Execute">
+				<command>exo-open --launch TerminalEmulator</command>
+			</action>
+		</item>
+		<item label="File Manager"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//file-manager.png">
+			<action name="Execute">
+				<command>exo-open --launch FileManager</command>
+			</action>
+		</item>
+		<item label="Web Browser"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//web-browser.png">
+			<action name="Execute">
+				<command>exo-open --launch WebBrowser</command>
+			</action>
+		</item>
+		<item label="Mail Reader"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//mail.png">
+			<action name="Execute">
+				<command>exo-open --launch MailReader</command>
+			</action>
+		</item>
+		<item label="Wallpaper"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//wallpaper.png">
+			<action name="Execute">
+				<command>nitrogen</command>
+			</action>
+		</item>
+		<item label="Screenshot"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//screenshot.png">
+			<action name="Execute">
+				<command>ksnapshot</command>
+			</action>
+		</item>
+		<item label="Apps Killer"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//dialog-error.png">
+			<action name="Execute">
+				<command>xkill</command>
+			</action>
+		</item>
+	<menu id="client-list-menu"/>
+		<separator label="Applications"/>
+		<menu id="apps-accessories-menu"/>
+		<menu id="apps-editors-menu"/>
+		<menu id="apps-graphics-menu"/>
+		<menu id="apps-net-menu"/>
+		<menu id="apps-office-menu"/>
+		<menu id="apps-multimedia-menu"/>
+		<menu id="apps-term-menu"/>
+		<menu id="apps-fileman-menu"/>
+		<separator label="System"/>
+		<menu id="system-menu"/>
+		<menu id="Openbox" label="Openbox">
+		<item label="Configurations Backup To: ~/"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//backup.png">
+			<action name="Execute">
+				<command>tar -zcPf /home/geo/backup-openbox-configuration.tar.gz /home/geo/bin/ob-menu-regenerator /home/geo/.config/openbox</command>
+			</action>
+		</item>
+		<item label="Configurations Restore From: ~/"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//backup.png">
+			<action name="Execute">
+				<command>tar -zxPf /home/geo/backup-openbox-configuration.tar.gz</command>
+			</action>
+		</item>
+		<item label="Apps Autostart Configuration"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//configuration.png">
+			<action name="Execute">
+				<command>kate -b /home/geo/.config/openbox/autostart</command>
+			</action>
+		</item>
+		<item label="Configuration Manager"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//configuration.png">
+			<action name="Execute">
+				<command>obconf</command>
+			</action>
+		</item>
+		<item label="Hotkey Configuration"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//configuration.png">
+			<action name="Execute">
+				<command>obkey</command>
+			</action>
+		</item>
+		<item label="Menu Configuration"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//configuration.png">
+			<action name="Execute">
+				<command>kate -b /home/geo/bin/ob-menu-regenerator</command>
+			</action>
+		</item>
+		<item label="ScreenSaver Configuration"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//configuration.png">
+			<action name="Execute">
+				<command>xscreensaver-demo</command>
+			</action>
+		</item>
+		<item label="Preferred Applications"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//favorite.png">
+			<action name="Execute">
+				<command>exo-preferred-applications</command>
+			</action>
+		</item>
+		<item label="Regenerate Menu"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//reload.png">
+			<action name="Execute">
+				<command>ob-menu-regenerator</command>
+			</action>
+		</item>
+		<item label="Reconfigure"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//reload.png">
+			<action name="Reconfigure">
+			</action>
+		</item>
+		<item label="Restart"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//reload.png">
+			<action name="Restart"/>
+			</action>
+	</menu>
+		<menu id="Conky" label="Conky">
+		<item label="Conky"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//statistics.png">
+			<action name="Execute">
+				<command>conky -d</command>
+			</action>
+		</item>
+		<item label="Conky Configuration"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//configuration.png">
+			<action name="Execute">
+				<command>kate -b /home/geo/.conkyrc</command>
+			</action>
+		</item>
+		<item label="Conky Logs"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//statistics.png">
+			<action name="Execute">
+				<command>conky -d -c /home/geo/.conkylogs</command>
+			</action>
+		</item>
+		<item label="Conky Logs Configuration"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//configuration.png">
+			<action name="Execute">
+				<command>kate -b /home/geo/.conkylogs</command>
+			</action>
+		</item>
+		<item label="Conky Restart"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//reload.png">
+			<action name="Execute">
+				<command>killall -USR1 conky</command>
+			</action>
+		</item>
+		<item label="Conky Stop"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//stop.png">
+			<action name="Execute">
+				<command>killall -TERM conky</command>
+			</action>
+		</item>
+	</menu>
+		<menu id="DiskManager" label="Disk Manager">
+		<item label="[Mount|Unmount] USB Flash Disk"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//drive-removable-media-usb.png">
+			<action name="Execute">
+				<command>/home/geo/.config/openbox/volman/ob-disk-manager</command>
+			</action>
+		</item>
+		<item label="PCBSD Disk Manager"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//zmanager.png">
+			<action name="Execute">
+				<command>kdesu pc-zmanager</command>
+			</action>
+		</item>
+	</menu>
+		<menu id="places" label="Places" execute="/home/geo/.config/openbox/pipemenu/cb-places-pipemenu --recent ~/" />
+		<menu id="KDEservices" label="KDE-Services" execute="/home/geo/.config/openbox/pipemenu/kde-services-pipemenu" />
+		<menu id="help" label="Help" execute="/home/geo/.config/openbox/pipemenu/cb-help-pipemenu" />
+		<separator label="Session"/>
+		<item label="Log Out"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//logout.png">
+			<action name="Exit">
+				<prompt>yes</prompt>
+			</action>
+		</item>
+		<item label="Reboot"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//reboot.png">
+			<action name="Execute">
+				<prompt>Are you sure you want to reboot system?</prompt>
+				<command>shutdown -r now</command>
+			</action>
+		</item>
+		<item label="Power Off"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//shutdown.png">
+			<action name="Execute">
+				<prompt>Are you sure you want to power off system?</prompt>
+				<command>poweroff</command>
+			</action>
+		</item>
+		<item label="Screen Lock"
+		icon="/home/geo/.config/openbox/icons/64x64/apps//lock-screen.png">
+			<action name="Execute">
+				<command>xlock</command>
+			</action>
+		</item>
+</openbox_menu>
