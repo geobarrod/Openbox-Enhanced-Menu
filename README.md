@@ -1,15 +1,10 @@
 Openbox Enhanced Menu (FreeBSD)
 
-Author:
-Geovani B.R. (geobarrod) <igeo.cu@gmail.com>
-
-License:
-BSD
-
 Description:
 Regenerate an improved Openbox main menu enabling extra features.
 
 Required dependencies:
+
 -ImageMagick
 -conky
 -gmrun
@@ -32,11 +27,11 @@ Recommended dependencies:
 -tint2
 
 Install:
-1- $ tar -xf Openbox-Enhanced-Menu-1.0.0.tar.gz
-2- $ cd Openbox-Enhanced-Menu-1.0.0
-3- $ make install
+- $ tar -xf Openbox-Enhanced-Menu-1.0.0.tar.gz
+- $ cd Openbox-Enhanced-Menu-1.0.0
+- $ make install
 
 Uninstall:
-1- $ tar -xf Openbox-Enhanced-Menu-1.0.0.tar.gz
-2- $ cd Openbox-Enhanced-Menu-1.0.0
-3- $ make uninstall
+- $ tar -xf Openbox-Enhanced-Menu-1.0.0.tar.gz
+- $ cd Openbox-Enhanced-Menu-1.0.0
+- $ make uninstall
