@@ -3,7 +3,6 @@ Openbox Enhanced Menu
 Description:
 - Regenerate an improved Openbox main menu enabling extra features.
 
-
 ### FreeBSD ###
 Required dependencies:
 - ImageMagick
