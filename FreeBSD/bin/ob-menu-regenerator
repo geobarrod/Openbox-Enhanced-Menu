@@ -3,7 +3,7 @@
 # Author:	Geovani B.R. (geobarrod) <igeo.cu@gmail.com>
 # License:	BSD
 # Version:	1457928685
-# Update:	1482547102
+# Update:	1482571636
 
 DATE="$(date +%Y%m%d)"
 DATE_UNIX=$(date +%s)
@@ -342,25 +342,25 @@ sed -i "" -e "s/ %.//g" -e "s/ \"%.\"//g" -e "s/ -caption//g" -e "s/ --caption//
 openbox --reconfigure
 if [ "$?" != "0" ]; then
 	echo "ERROR: Something goes wrong."
-	if [ -x $(which Xdialog) ]; then
+	if [ -x "$(which Xdialog)" ]; then
 		Xdialog --title "Openbox Menu Regenerator" --timeout 5 --msgbox "ERROR: Something goes wrong." 5 40
 		exit 1
-	elif [ -x $(which zenity) ]; then
+	elif [ -x "$(which zenity)" ]; then
 		zenity --title="Openbox Menu Regenerator" --timeout=5 --error --text="ERROR: Something goes wrong." 2> /dev/null
 		exit 1
-	elif [ -x $(which kdialog) ]; then
+	elif [ -x "$(which kdialog)" ]; then
 		kdialog --icon=$ICON_THEME/dialog-error.png --title="Openbox Menu Regenerator" --passivepopup="ERROR: Something goes wrong." 5 2> /dev/null
 		exit 1
 	fi
 else
 	echo "SUCCESS: The Openbox menu has been regenerated."
-	if [ -x $(which Xdialog) ]; then
+	if [ -x "$(which Xdialog)" ]; then
 		Xdialog --title "Openbox Menu Regenerator" --timeout 5 --msgbox "SUCCESS: The Openbox menu has been regenerated." 5 50
 		exit 0
-	elif [ -x $(which zenity) ]; then
+	elif [ -x "$(which zenity)" ]; then
 		zenity --title="Openbox Menu Regenerator" --timeout=5 --info --text="SUCCESS: The Openbox menu has been regenerated." 2> /dev/null
 		exit 0
-	elif [ -x $(which kdialog) ]; then
+	elif [ -x "$(which kdialog)" ]; then
 		kdialog --icon=$ICON_THEME/dialog-information.png --title="Openbox Menu Regenerator" --passivepopup="SUCCESS: The Openbox menu has been regenerated." 5 2> /dev/null
 		exit 0
 	fi

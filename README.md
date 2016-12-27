@@ -27,11 +27,11 @@ Recommended dependencies:
 - tint2
 
 Install:
-- $ tar -xf Openbox-Enhanced-Menu-1.0.0.tar.gz
-- $ cd Openbox-Enhanced-Menu-1.0.0
+- $ tar -xf Openbox-Enhanced-Menu-1.0.1.tar.gz
+- $ cd Openbox-Enhanced-Menu-1.0.1
 - $ make install
 
 Uninstall:
-- $ tar -xf Openbox-Enhanced-Menu-1.0.0.tar.gz
-- $ cd Openbox-Enhanced-Menu-1.0.0
+- $ tar -xf Openbox-Enhanced-Menu-1.0.1.tar.gz
+- $ cd Openbox-Enhanced-Menu-1.0.1
 - $ make uninstall
