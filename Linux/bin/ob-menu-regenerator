@@ -1,0 +1,357 @@
+#!/bin/sh
+# Openbox Menu Regenerator
+# Author:	Geovani B.R. (geobarrod) <igeo.cu@gmail.com>
+# License:	BSD
+# Version:	1457928685
+# Update:	1482571636
+
+DATE="$(date +%Y%m%d)"
+DATE_UNIX=$(date +%s)
+DAYS=$(echo "7 * 24 * 60 *60"|bc)
+DEL_DAYS=$(($DATE_UNIX - DAYS))
+DATE_ANT=$(date -r $DEL_DAYS +%Y%m%d)
+MENU_FILE="$HOME/.config/openbox/menu.xml"
+ICON_THEME="$HOME/.config/openbox/icons/64x64/apps/"
+
+if [ "$(uname -s)" == "FreeBSD" ]; then
+  SHARE_APPS="/usr/local/share/applications/"
+elif [ "$(uname -s)" == "Linux" ]; then
+  SHARE_APPS="/usr/share/applications/"
+fi
+
+apps_menu (){
+  NAME="$(egrep -w "Name=.*" "$i"|sed 's/Name=//'|head -n1)"
+  ICON="$(egrep -w "Icon=.*" "$i"|sed 's/Icon=//'|head -n1)"
+  EXEC="$(egrep -w "Exec=.*" "$i"|sed 's/Exec=//'|head -n1)"
+  echo -e "\t\t<item label=\"$NAME\"" >> $MENU_FILE
+  echo -e "\t\ticon=\"$ICON_THEME$ICON.png\">" >> $MENU_FILE
+  echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+  echo -e "\t\t\t\t<command>$EXEC</command>" >> $MENU_FILE
+  echo -e "\t\t\t\t<startupnotify>" >> $MENU_FILE
+  echo -e "\t\t\t\t\t<enabled>yes</enabled>" >> $MENU_FILE
+  echo -e "\t\t\t\t</startupnotify>" >> $MENU_FILE
+  echo -e "\t\t\t</action>" >> $MENU_FILE
+  echo -e "\t\t</item>" >> $MENU_FILE
+}
+
+clear
+mkdir -p $HOME/.config/openbox
+mv $MENU_FILE $MENU_FILE.$DATE 2> /dev/null
+rm -f $MENU_FILE.$DATE_ANT
+echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>" > $MENU_FILE
+echo "<openbox_menu xmlns=\"http://openbox.org/3.4/menu\">" >> $MENU_FILE
+
+echo -e "\t<menu id=\"apps-accessories-menu\" label=\"Accessories\">" >> $MENU_FILE
+for i in $(find $SHARE_APPS -iname "*.desktop" -exec egrep -Hw Utility {} \;|egrep -v Comment|egrep -v TextEditor|sort -u|awk -F: '{print $1}'|uniq); do
+  apps_menu
+done
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"apps-editors-menu\" label=\"Editors\">" >> $MENU_FILE
+for i in $(find $SHARE_APPS -iname "*.desktop" -exec egrep -Hw TextEditor {} \;|egrep -v Comment|sort -u|awk -F: '{print $1}'|uniq); do
+  apps_menu
+done
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"apps-fileman-menu\" label=\"File Managers\">" >> $MENU_FILE
+for i in $(find $SHARE_APPS -iname "*.desktop" -exec egrep -Hw FileManager {} \;|egrep -v Comment|sort -u|awk -F: '{print $1}'|uniq); do
+  apps_menu
+done
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"apps-graphics-menu\" label=\"Graphics\">" >> $MENU_FILE
+for i in $(find $SHARE_APPS -iname "*.desktop" -exec egrep -Hw Graphics {} \;|egrep -v Comment|egrep -v active-documentviewer|egrep -v okularApplication|sort -u|awk -F: '{print $1}'|uniq); do
+  apps_menu
+done
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"apps-multimedia-menu\" label=\"Multimedia\">" >> $MENU_FILE
+for i in $(find $SHARE_APPS -iname "*.desktop" -exec egrep -Hw AudioVideo {} \;|egrep -v Comment|egrep -v amarok_containers|sort -u|awk -F: '{print $1}'|uniq); do
+  apps_menu
+done
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"apps-net-menu\" label=\"Internet\">" >> $MENU_FILE
+for i in $(find $SHARE_APPS -iname "*.desktop" -exec egrep -Hw Network {} \;|egrep -v Comment|egrep -v Network-Tools|sort -u|awk -F: '{print $1}'|uniq); do
+  apps_menu
+done
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"apps-office-menu\" label=\"Office\">" >> $MENU_FILE
+for i in $(find $SHARE_APPS -iname "*.desktop" -exec egrep -Hw Office {} \;|egrep -v Comment|egrep -v active-documentviewer|sort -u|awk -F: '{print $1}'|uniq); do
+  apps_menu
+done
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"apps-term-menu\" label=\"Terminals\">" >> $MENU_FILE
+for i in $(find $SHARE_APPS -iname "*.desktop" -exec egrep -Hw TerminalEmulator {} \;|egrep -v Comment|sort -u|awk -F: '{print $1}'|uniq); do
+  apps_menu
+done
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"system-menu\" label=\"System\">" >> $MENU_FILE
+
+for i in $(find $SHARE_APPS -iname "*.desktop" -exec egrep -Hw System {} \;|egrep -v Comment|egrep -v TerminalEmulator|egrep -v kfmclient|egrep -v FileManager|egrep -v FileTools|egrep -v Utility|egrep -v TerminalEmulator|egrep -v AudioVideo|egrep -v Tools|egrep -v X-KDE-More|egrep -v ConsoleOnly|sort -u|awk -F: '{print $1}'|uniq); do
+  apps_menu
+done
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"root-menu\" label=\"Openbox\">" >> $MENU_FILE
+echo -e "\t\t<separator label=\"$(openbox --version|head -n1) ⚫ $(uname -s)\"/>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Run\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/run.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>gmrun</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Terminal Emulator\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/terminal.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>exo-open --launch TerminalEmulator</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"File Manager\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/file-manager.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>exo-open --launch FileManager</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Web Browser\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/web-browser.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>exo-open --launch WebBrowser</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Mail Reader\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/mail.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>exo-open --launch MailReader</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Wallpaper\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/wallpaper.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>nitrogen</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Screenshot\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/screenshot.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>scrot -d 1 \"%Y-%m-%d_%H-%M_screenshot.png\" -e \"display -geometry $(xrandr |grep '*'|awk -F " " '{print $1}') $(date +%Y-%m-%d_%H-%M)_screenshot.png\"</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Apps Killer\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/dialog-error.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>xkill</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t<menu id=\"client-list-menu\"/>" >> $MENU_FILE
+
+echo -e "\t\t<separator label=\"Applications\"/>" >> $MENU_FILE
+echo -e "\t\t<menu id=\"apps-accessories-menu\"/>" >> $MENU_FILE
+echo -e "\t\t<menu id=\"apps-editors-menu\"/>" >> $MENU_FILE
+echo -e "\t\t<menu id=\"apps-graphics-menu\"/>" >> $MENU_FILE
+echo -e "\t\t<menu id=\"apps-net-menu\"/>" >> $MENU_FILE
+echo -e "\t\t<menu id=\"apps-office-menu\"/>" >> $MENU_FILE
+echo -e "\t\t<menu id=\"apps-multimedia-menu\"/>" >> $MENU_FILE
+echo -e "\t\t<menu id=\"apps-term-menu\"/>" >> $MENU_FILE
+echo -e "\t\t<menu id=\"apps-fileman-menu\"/>" >> $MENU_FILE
+echo -e "\t\t<separator label=\"System\"/>" >> $MENU_FILE
+echo -e "\t\t<menu id=\"system-menu\"/>" >> $MENU_FILE
+
+echo -e "\t\t<menu id=\"Openbox\" label=\"Openbox\">" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Configurations Backup To: ~/\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/backup.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>tar -zcPf $HOME/backup-openbox-configuration.tar.gz $HOME/bin/ob-menu-regenerator $HOME/.config/openbox</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Configurations Restore From: ~/\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/backup.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>tar -zxPf $HOME/backup-openbox-configuration.tar.gz</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Apps Autostart Configuration\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/configuration.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>xterm -e vi $HOME/.config/openbox/autostart</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Configuration Manager\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/configuration.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>obconf</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Hotkey Configuration\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/configuration.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>obkey</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Menu Regenerator Script\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/configuration.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>xterm -e vi $HOME/bin/ob-menu-regenerator</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"ScreenSaver Configuration\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/configuration.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>xscreensaver-demo</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Preferred Applications\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/favorite.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>exo-preferred-applications</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Regenerate Menu\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/reload.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>ob-menu-regenerator</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Reconfigure\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/reload.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Reconfigure\">" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Restart\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/reload.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Restart\"/>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t\t<menu id=\"Conky\" label=\"Conky\">" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Conky\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/statistics.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>conky -d -c $HOME/.config/openbox/conky/conkyrc</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Conky Configuration\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/configuration.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>xterm -e vi $HOME/.config/openbox/conky/conkyrc</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Conky Logs\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/statistics.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>conky -d -c $HOME/.config/openbox/conky/conkylogsrc</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Conky Logs Configuration\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/configuration.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>xterm -e vi $HOME/.config/openbox/conky/conkylogsrc</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Conky Restart\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/reload.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>killall -USR1 conky</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Conky Stop\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/stop.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>killall -TERM conky</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+echo -e "\t</menu>" >> $MENU_FILE
+
+echo -e "\t\t<menu id=\"places\" label=\"Places\" execute=\"$HOME/.config/openbox/pipemenu/cb-places-pipemenu --recent ~/\" />" >> $MENU_FILE
+
+echo -e "\t\t<menu id=\"help\" label=\"Help\" execute=\"$HOME/.config/openbox/pipemenu/cb-help-pipemenu\" />" >> $MENU_FILE
+
+echo -e "\t\t<separator label=\"Session\"/>" >> $MENU_FILE
+echo -e "\t\t<item label=\"Log Out\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/logout.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Exit\">" >> $MENU_FILE
+echo -e "\t\t\t\t<prompt>yes</prompt>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Reboot\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/reboot.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<prompt>Are you sure you want to reboot system?</prompt>" >> $MENU_FILE
+echo -e "\t\t\t\t<command>shutdown -r now</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Power Off\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/shutdown.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<prompt>Are you sure you want to power off system?</prompt>" >> $MENU_FILE
+echo -e "\t\t\t\t<command>poweroff</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo -e "\t\t<item label=\"Screen Lock\"" >> $MENU_FILE
+echo -e "\t\ticon=\"$ICON_THEME/lock-screen.png\">" >> $MENU_FILE
+echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
+echo -e "\t\t\t\t<command>xscreensaver-command -lock</command>" >> $MENU_FILE
+echo -e "\t\t\t</action>" >> $MENU_FILE
+echo -e "\t\t</item>" >> $MENU_FILE
+
+echo "</openbox_menu>" >> $MENU_FILE
+
+sed -i "" -e "s/ %.//g" -e "s/ \"%.\"//g" -e "s/ -caption//g" -e "s/ --caption//g" $MENU_FILE
+openbox --reconfigure
+if [ "$?" != "0" ]; then
+	echo "ERROR: Something goes wrong."
+	if [ -x "$(which Xdialog)" ]; then
+		Xdialog --title "Openbox Menu Regenerator" --timeout 5 --msgbox "ERROR: Something goes wrong." 5 40
+		exit 1
+	elif [ -x "$(which zenity)" ]; then
+		zenity --title="Openbox Menu Regenerator" --timeout=5 --error --text="ERROR: Something goes wrong." 2> /dev/null
+		exit 1
+	elif [ -x "$(which kdialog)" ]; then
+		kdialog --icon=$ICON_THEME/dialog-error.png --title="Openbox Menu Regenerator" --passivepopup="ERROR: Something goes wrong." 5 2> /dev/null
+		exit 1
+	fi
+else
+	echo "SUCCESS: The Openbox menu has been regenerated."
+	if [ -x "$(which Xdialog)" ]; then
+		Xdialog --title "Openbox Menu Regenerator" --timeout 5 --msgbox "SUCCESS: The Openbox menu has been regenerated." 5 50
+		exit 0
+	elif [ -x "$(which zenity)" ]; then
+		zenity --title="Openbox Menu Regenerator" --timeout=5 --info --text="SUCCESS: The Openbox menu has been regenerated." 2> /dev/null
+		exit 0
+	elif [ -x "$(which kdialog)" ]; then
+		kdialog --icon=$ICON_THEME/dialog-information.png --title="Openbox Menu Regenerator" --passivepopup="SUCCESS: The Openbox menu has been regenerated." 5 2> /dev/null
+		exit 0
+	fi
+fi

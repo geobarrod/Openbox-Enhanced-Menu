@@ -1,0 +1,187 @@
+# the list of variables has been removed from this file in favour
+# of keeping the documentation more maintainable.
+# Check http://conky.sf.net for an up-to-date-list.
+# Customized by Geovanni B. R. <igeo.cu@gmail.com>. May 2012.
+
+# set to yes if you want Conky to be forked in the background
+background yes
+
+# X font when Xft is disabled, you can pick one with program xfontsel
+#font 5x7
+#font 6x10
+#font 7x10
+#font 8x13
+#font 9x15
+#font *mintsmild.se*
+#font -*-*-*-*-*-*-34-*-*-*-*-*-*-*
+
+# Use Xft?
+use_xft yes
+
+# Xft font when Xft is enabled
+xftfont monospace:size=8
+
+# Text alpha when using Xft
+xftalpha 1.0
+
+# Print everything to console?
+# out_to_console no
+
+# Update interval in seconds
+update_interval 5.0
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+own_window_title System Status
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+
+# If own_window is yes, you may use type normal, desktop or override
+own_window_type desktop
+
+# Use pseudo transparency with own_window?
+own_window_transparent yes
+
+# If own_window_transparent is set to no, you can set the background colour here
+own_window_colour black
+
+# If own_window is yes, these window manager hints may be used
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#own_window_hints below,skip_taskbar,skip_pager
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 1 1
+maximum_width 300
+
+# Draw shades?
+draw_shades yes
+
+# Draw outlines?
+draw_outline yes
+
+# Draw borders around text
+draw_borders no
+
+# Draw borders around graphs
+draw_graph_borders yes
+
+# Stippled borders?
+stippled_borders 1
+
+# border margins
+border_inner_margin 5
+
+# border width
+border_width 1
+
+# Default colors and also border colors
+default_color white
+default_shade_color white
+default_outline_color black
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment middle_left
+#alignment middle_right
+#alignment bottom_left
+#alignment bottom_right
+#alignment none
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 5
+gap_y 1
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer none
+
+text_buffer_size 16144
+
+TEXT
+# HOSTNAME
+${alignc}${color green}HOSTNAME: ${color lightgreen}$nodename
+# KERNEL - OS
+${alignc}${color green}OS: ${color lightgreen}${execi 86400 uname -o}
+${alignc}${color green}KERNEL: ${color lightgreen}$kernel
+${alignc}${color green}UPTIME: ${color lightgreen}$uptime
+${alignc}${color green}LOAD: ${color lightgreen}$loadavg
+# CPU
+${color green}CPU
+${color green}Details: ${color lightgreen}$machine, $freq(MHz) ${color green}${alignr}Temp: ${color orange}${execi 300 sysctl -n dev.cpu.0.temperature}
+${color green}Usage: ${color lightgreen}${cpu}% ${color red}${alignr}${cpubar 8,100}
+
+# RAM
+${color green}RAM
+${color green}Usage: ${color lightgreen}$mem${color lightblue}/${color orange}$memmax ${color lightgreen}($memperc%) ${alignr}${color red}${membar 8,100}
+${color green}Swap: ${color lightgreen}$swap${color lightblue}/${color orange}$swapmax ${color lightgreen}($swapperc%) ${alignr}${color red}${swapbar 8,100}
+
+# PROCS
+${color green}PROCS
+${alignc}${color lightgreen}${execi 2 top -n|grep -w processes}
+${alignc}${color green}(top 3 sorted by CPU usage)
+${alignc}${color green} NAME              PID    CPU%   MEM%
+${alignc}${color red} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+${alignc}${color orange} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+${alignc}${color yellow} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+${alignc}${color green}(top 3 sorted by MEM usage)
+${alignc}${color green} NAME              PID    CPU%   MEM%
+${alignc}${color red} ${top_mem name 1} ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+${alignc}${color orange} ${top_mem name 2} ${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+${alignc}${color yellow} ${top_mem name 3} ${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+
+# HDD
+${color green}HDD
+${alignr}${offset -14}Free        Size
+${color green}  Root ${color lightgreen}${alignr}${fs_free /}     ${color orange}${fs_size /}
+${alignr}${color red}${fs_bar 8,100 /}
+${color lightgreen}  Read: ${color lightgreen}${diskio_read}${color red}${alignr}${diskiograph 30,152 FF8000 8EEB8E -t}
+${color orange}  ${voffset -22}Write: ${color orange}${diskio_write}
+
+# NETWORK
+${color green}NETWORK
+${color green}LAN IP: ${color lightgreen}${alignr}${addr rl0}
+${color lightgreen}LAN Speed Down (KB): ${alignr}${color lightgreen}${downspeedf rl0}
+${color lightblue}LAN Speed Up (KB): ${alignr}${color lightblue}${upspeedf rl0}
+${color green}WAN IP: ${color lightgreen}${alignr}${addr re0}
+${color lightgreen}WAN Speed Down (KB): ${alignr}${color lightgreen}${downspeedf re0}
+${color lightblue}WAN Speed Up (KB): ${alignr}${color lightblue}${upspeedf re0}
+${color green}Gw Iface: ${color lightgreen}${alignr}${execi 5 netstat -rn|grep -w default|awk '{print $4}'}
+${color green}Gw IP: ${color lightgreen}${alignr}${execi 5 netstat -rn|grep -w default|awk '{print $2}'}
+${color green}DNS: ${color lightgreen}${alignr}${nameserver}
+${color green}CONGESTION CONTROL: ${color lightgreen}${alignr}${execi 5 sysctl net.inet.tcp.cc.algorithm|awk -F: '{print $2}'}
+
+# DATE
+${color green}DATE
+${color lightgreen}${execi 300 cal -h}
+${color lightgreen}${alignr 10}${voffset -90}${font Arial Black:size=24}${time %H:%M:%S}${font}
+${color lightgreen}${alignr 25}${font Arial Black:size=10}${time %A %d %Y}${font}
+
+
+
+# WEATHER
+${color green}${alignc}WEATHER
+${color lightgreen}${alignc}${font Arial Black:size=10}${execi 1800 weather havana}${font}

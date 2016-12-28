@@ -1,0 +1,43 @@
+#!/bin/sh
+cat << _EOF_
+<openbox_pipe_menu>
+    <separator label="Online"/>
+    <menu id="OpenboxWWW" label="Openbox">
+        <item label="Openbox Homepage">
+		    <action name="Execute">
+			    <execute>
+				    exo-open "http://openbox.org/wiki/Main_Page"
+			    </execute>
+		    </action>
+	    </item>
+	    <item label="Openbox Documentation">
+		    <action name="Execute">
+			    <execute>
+				    exo-open "http://openbox.org/wiki/Help:Contents"
+			    </execute>
+		    </action>
+	    </item>
+	    <item label="Openbox FAQ">
+		    <action name="Execute">
+			    <execute>
+				    exo-open "http://openbox.org/wiki/Help:FAQ"
+			    </execute>
+		    </action>
+	    </item>
+	    <item label="Openbox Getting Started">
+		    <action name="Execute">
+			    <execute>
+				    exo-open "http://openbox.org/wiki/Help:Getting_started"
+			    </execute>
+		    </action>
+	    </item>
+	    <item label="Openbox Community Portal">
+		    <action name="Execute">
+			    <execute>
+				    exo-open "http://openbox.org/wiki/Openbox:Community_portal"
+			    </execute>
+		    </action>
+	    </item>
+	</menu>
+</openbox_pipe_menu>
+_EOF_

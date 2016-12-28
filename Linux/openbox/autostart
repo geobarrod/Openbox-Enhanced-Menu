@@ -1,0 +1,10 @@
+compton &
+nitrogen --restore &
+numlockx &
+tint2 &
+yakuake &
+kmix &
+klipper &
+conky -c ~/.config/openbox/conky/conkyrc &
+conky -c ~/.config/openbox/conky/conkylogsrc &
+xscreensaver &
