@@ -2,8 +2,7 @@
 # Openbox Menu Regenerator
 # Author:	Geovani B.R. (geobarrod) <igeo.cu@gmail.com>
 # License:	BSD
-# Version:	1457928685
-# Update:	1482571636
+# Version:	1.0.2
 
 DATE="$(date +%Y%m%d)"
 DATE_UNIX=$(date +%s)
@@ -144,7 +143,7 @@ echo -e "\t\t</item>" >> $MENU_FILE
 echo -e "\t\t<item label=\"Screenshot\"" >> $MENU_FILE
 echo -e "\t\ticon=\"$ICON_THEME/screenshot.png\">" >> $MENU_FILE
 echo -e "\t\t\t<action name=\"Execute\">" >> $MENU_FILE
-echo -e "\t\t\t\t<command>scrot -d 1 \"%Y-%m-%d_%H-%M_screenshot.png\" -e \"display -geometry $(xrandr |grep '*'|awk -F " " '{print $1}') $(date +%Y-%m-%d_%H-%M)_screenshot.png\"</command>" >> $MENU_FILE
+echo -e "\t\t\t\t<command>scrot -d 3 \"%Y-%m-%d_%H-%M_screenshot.png\" -e \"display -geometry $(xrandr |grep '*'|awk -F " " '{print $1}') $(date +%Y-%m-%d_%H-%M)_screenshot.png\"</command>" >> $MENU_FILE
 echo -e "\t\t\t</action>" >> $MENU_FILE
 echo -e "\t\t</item>" >> $MENU_FILE
 
