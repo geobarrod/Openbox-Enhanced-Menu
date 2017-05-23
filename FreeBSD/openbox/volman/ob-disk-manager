@@ -3,7 +3,7 @@
 # Author:	Geovani B.R. (geobarrod) <igeo.cu@gmail.com>
 # License:	BSD
 # Version:	1478754488
-# Update:	1482547102
+# Update:	1495404522
 
 ICON_THEME="$HOME/.config/openbox/icons/64x64/apps/"
 VMSG="/tmp/volman-msg.tmp"
@@ -49,7 +49,7 @@ if [ "$(vmount|awk -F " " '{print $1}'|uniq)" == "[m]" ]; then
 	elif [ -x $(which kdialog) ]; then
 		kdialog --icon=$ICON_THEME/dialog-information.png --title="[Mount|Unmount] USB Flash Disk" --passivepopup="SUCCESS: All USB flash disk device are mounted on /media directory." 5 2> /dev/null
 	fi
-	exo-open /media
+	exo-open /media/$(vmount|awk -F " " '{print $5}'|uniq)
 elif [ "$(vmount|awk -F " " '{print $1}'|uniq)" == "[u]" ]; then
 	if [ -x $(which Xdialog) ]; then
 		Xdialog --title "[Mount|Unmount] USB Flash Disk" --timeout 5 --msgbox "SUCCESS: Now is safe disconnect all USB flash disk device." 5 55
